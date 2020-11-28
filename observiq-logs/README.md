@@ -13,7 +13,8 @@ Then to implement in your workflow:
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-secretGenerator:
+secretGenerator:  
+- name: observiq-agent-secrets
   envs:
   - oiq.env
 
