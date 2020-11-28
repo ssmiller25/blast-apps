@@ -13,11 +13,13 @@ Then to implement in your workflow:
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+namespace: observiq-events
+
 secretGenerator:
 - name: observiq-agent-secrets
   envs:
   - oiq.env
 
 resources:
-  - github.com/ssmiller25/blast-apps/observiq-events?ref=v1.0.0
+  - git::http://github.com/ssmiller25/blast-apps/observiq-events?ref=v1.0.0
 ```
