@@ -22,22 +22,6 @@ items:
     name: wikijs
     namespace: wikijs
 - apiVersion: v1
-  data:
-    postgresql-password: MFJKRDhsenFvMA==
-  kind: Secret
-  metadata:
-    annotations:
-      kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"v1","data":{"postgresql-password":"MFJKRDhsenFvMA=="},"kind":"Secret","metadata":{"annotations":{},"labels":{"app":"postgresql","chart":"postgresql-6.5.0","heritage":"Helm","release":"wikijs"},"name":"wikijs-postgresql","namespace":"wikijs"},"type":"Opaque"}
-    labels:
-      app: postgresql
-      chart: postgresql-6.5.0
-      heritage: Helm
-      release: wikijs
-    name: wikijs-postgresql
-    namespace: wikijs
-  type: Opaque
-- apiVersion: v1
   kind: Service
   metadata:
     annotations:
