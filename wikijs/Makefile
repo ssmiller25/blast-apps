@@ -22,6 +22,7 @@ app.yaml:
 	@echo "Clean app.yaml generated"
 	@rm -r wikijs-src
 	@echo "MANUALLY REMOVE SECRET FROM app.yaml!!!"
+	@echo "MANUALLY DELETE TEST POD FROM app.yaml!!!"
 .PHONY: clean
 clean:
 	@rm app.yaml

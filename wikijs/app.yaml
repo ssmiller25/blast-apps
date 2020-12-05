@@ -284,29 +284,5 @@ items:
         resources:
           requests:
             storage: 8Gi
-- apiVersion: v1
-  kind: Pod
-  metadata:
-    annotations:
-      helm.sh/hook: test-success
-      kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{"helm.sh/hook":"test-success"},"labels":{"app.kubernetes.io/instance":"wikijs","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"wiki","app.kubernetes.io/version":"latest","helm.sh/chart":"wiki-2.1.0"},"name":"wikijs-test-connection","namespace":"wikijs"},"spec":{"containers":[{"args":["wikijs:80"],"command":["wget"],"image":"busybox","name":"wget"}],"restartPolicy":"Never"}}
-    labels:
-      app.kubernetes.io/instance: wikijs
-      app.kubernetes.io/managed-by: Helm
-      app.kubernetes.io/name: wiki
-      app.kubernetes.io/version: latest
-      helm.sh/chart: wiki-2.1.0
-    name: wikijs-test-connection
-    namespace: wikijs
-  spec:
-    containers:
-    - args:
-      - wikijs:80
-      command:
-      - wget
-      image: busybox
-      name: wget
-    restartPolicy: Never
 kind: List
 metadata: {}
