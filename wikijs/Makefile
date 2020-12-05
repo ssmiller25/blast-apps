@@ -1,4 +1,4 @@
-VERSION?="v0.0.1"
+VERSION?="2.5.170"
 # For cli directly installed
 CIVO_CMD?="civo"
 # For Docker
@@ -12,7 +12,8 @@ build: app.yaml
 
 app.yaml:
 # Whatever commands are needed to build the app.yaml.  Kustomize example below
-	@git clone --depth 1 git@github.com:Requarks/wiki.git wikijs-src 
+	@git clone --depth 1 --no-single-branch git@github.com:Requarks/wiki.git wikijs-src 
+	@cd wikijs-src; git checkout $(VERSION)
 	@helm template wikijs wikijs-src/dev/helm/ > kustomize-build/app.yaml
 	@kubectl apply -k kustomize-build/ -o yaml --dry-run=client > app.yaml
 	# Test final app.yaml for validity
