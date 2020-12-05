@@ -2,7 +2,7 @@
 
 A powerful and extensible open source Wiki package.  See [manifest.yaml](manifest.yaml) for more details.
 
-*Note:* Copied from my implementation in the [Civo Marketplace](https://github.com/civo/kubernetes-marketplace).  Adjust to run from a kustomization.yaml manifest, as well as to use an external KubeDB provider to provision the database.
+*Note:* Copied from my implementation in the [Civo Marketplace](https://github.com/civo/kubernetes-marketplace).  Adjust to run from a kustomization.yaml manifest.
 
 ## Usage
 
@@ -14,8 +14,11 @@ kind: Kustomization
 
 namespace: wikijs 
 
-## TODO: secret for actual postgres database
-
+## Replace with your methodology for secret generation
+secretGenerator:
+  - name: wikijs-postgresql
+    literals:
+      - postgresql-password: MySecretPassword
 
 resources:
   - git::http://github.com/ssmiller25/blast-apps/wikijs?ref=v1.1.0

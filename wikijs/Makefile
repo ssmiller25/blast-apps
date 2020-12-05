@@ -20,7 +20,8 @@ app.yaml:
 	@echo "Testing validity of app.yaml"
 	@kubectl apply -f app.yaml --dry-run=client > /dev/null
 	@echo "Clean app.yaml generated"
-
+	@rm -r wikijs-src
+	@echo "MANUALLY REMOVE SECRET FROM app.yaml!!!"
 .PHONY: clean
 clean:
 	@rm app.yaml
