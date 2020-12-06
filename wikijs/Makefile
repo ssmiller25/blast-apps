@@ -1,4 +1,5 @@
-VERSION?="2.5.170"
+#VERSION?="2.5.170"
+VERSION?="dev"
 # For cli directly installed
 CIVO_CMD?="civo"
 # For Docker
@@ -20,13 +21,13 @@ app.yaml:
 	@echo "Testing validity of app.yaml"
 	@kubectl apply -f app.yaml --dry-run=client > /dev/null
 	@echo "Clean app.yaml generated"
-	@rm -r wikijs-src
+	@rm -rf wikijs-src
 	@echo "MANUALLY REMOVE SECRET FROM app.yaml!!!"
 	@echo "MANUALLY DELETE TEST POD FROM app.yaml!!!"
 .PHONY: clean
 clean:
-	@rm app.yaml
-	@rm kustomize-build/app.yaml
+	@rm app.yaml || true
+	@rm kustomize-build/app.yaml || true
 
 .PHONY: test
 test: $(CIVO_KUBECONFIG) test-noclean cluster-clean

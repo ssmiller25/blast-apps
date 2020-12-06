@@ -23,7 +23,7 @@ metadata:
     heritage: "Helm"
 type: Opaque
 data:
-  postgresql-password: "MFJKRDhsenFvMA=="
+  postgresql-password: "TE5xaFlKc2I3bA=="
 ---
 # Source: wiki/charts/postgresql/templates/svc-headless.yaml
 apiVersion: v1
