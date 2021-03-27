@@ -1,4 +1,5 @@
-VERSION?="v0.0.1"
+#VERSION?="2.5.170"
+VERSION?="dev"
 # For cli directly installed
 CIVO_CMD?="civo"
 # For Docker
@@ -12,18 +13,21 @@ build: app.yaml
 
 app.yaml:
 # Whatever commands are needed to build the app.yaml.  Kustomize example below
-	@git clone --depth 1 git@github.com:Requarks/wiki.git wikijs-src 
+	@git clone --depth 1 --no-single-branch git@github.com:Requarks/wiki.git wikijs-src 
+	@cd wikijs-src; git checkout $(VERSION)
 	@helm template wikijs wikijs-src/dev/helm/ > kustomize-build/app.yaml
 	@kubectl apply -k kustomize-build/ -o yaml --dry-run=client > app.yaml
 	# Test final app.yaml for validity
 	@echo "Testing validity of app.yaml"
 	@kubectl apply -f app.yaml --dry-run=client > /dev/null
 	@echo "Clean app.yaml generated"
-
+	@rm -rf wikijs-src
+	@echo "MANUALLY REMOVE SECRET FROM app.yaml!!!"
+	@echo "MANUALLY DELETE TEST POD FROM app.yaml!!!"
 .PHONY: clean
 clean:
-	@rm app.yaml
-	@rm kustomize-build/app.yaml
+	@rm app.yaml || true
+	@rm kustomize-build/app.yaml || true
 
 .PHONY: test
 test: $(CIVO_KUBECONFIG) test-noclean cluster-clean
